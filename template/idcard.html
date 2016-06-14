@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>数据库数据</title>
+</head>
+<body>
+{{ range $key,$value := . }}
+<li>
+{{ range $k, $v := $value}}
+{{ $k }} 内容 :{{ $v }}
+{{ end }}
+</li>
+{{ end }}
+</body>
+</html>
