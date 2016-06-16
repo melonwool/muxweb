@@ -40,6 +40,7 @@ func ShowHandler(w http.ResponseWriter, r *http.Request) {
 	err = t.Execute(w, data)
 }
 
+//曾经想通过输出静态文件方式，但是发现css文件会有问题
 func StaticHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	buf, err := ioutil.ReadFile("static/" + string(vars["category"]) + "/" + string(vars["file"]))
@@ -47,4 +48,9 @@ func StaticHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(os.Stderr, "File Error: %s\n", err)
 	}
 	w.Write([]byte(buf))
+}
+
+func ServeStatic(w http.ResponseWriter, r *http.Request) {
+	had := http.StripPrefix("/static/", http.FileServer(http.Dir("static")))
+	had.ServeHTTP(w, r)
 }

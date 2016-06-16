@@ -1,4 +1,4 @@
-# gorilla 支持的WEB 框架
+# gorilla 支持的WEB Site
 
 ### 依赖库
 - gorilla/mux 
